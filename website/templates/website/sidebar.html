@@ -1,0 +1,34 @@
+{% extends "website/base.html" %}
+
+{% block body %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 text-center">
+		<h1>Drag and drop dishes into your meal itinerary</h1>
+		<p>All meals are prepared on the day itself. We do not use artifical colouring or preservatives in the preparation of our meals.</p>
+		<nav class="meal-selection" style="padding-bottom:20px;">
+			<h4 style="display:inline-block;"><a href="#"><span class="label label-primary">Asian</span></a></h4>
+			<h4 style="display:inline-block;"><a href="#"><span class="label label-default">Western</span></a></h4>
+			<h4 style="display:inline-block;"><a href="#"><span class="label label-info">Vegetarian</span></a></h4>
+			<h4 style="display:inline-block;"><a href="#"><span class="label label-success">Vegan</span></a></h4>
+			<h4 style="display:inline-block;"><a href="#"><span class="label label-warning">Pescetarian</span></a></h4>
+			<h4 style="display:inline-block;"><a href="#"><span class="label label-danger">Side Orders</span></a></h4>
+		</nav>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8 col-xs-12">
+{% include "website/menu.html" with dishes=dishes %}
+		</div>
+		<div class="col-sm-4 col-xs-12">
+{% include "website/nutrition-chart.html" %}
+		</div>
+	</div>
+	<div class="drop-overlay"></div>
+</div><!-- /container -->
+
+{% include "website/meal-itinerary.html" %}
+<div style="position:fixed;top:70px;right:20px;">
+	<button class="btn btn-lg btn-primary">Confirm</button>
+</div>
+{% endblock %}

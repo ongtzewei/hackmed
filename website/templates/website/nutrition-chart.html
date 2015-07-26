@@ -1,0 +1,64 @@
+{% load static %}
+<style>
+	.nutrient-intake {
+		position: relative;
+	}
+	.nutrient-chart {
+		height: 100px;
+	}
+	.nutrient-label {
+		position: absolute;
+		top: 85px;
+		width: 100%;
+		text-align: center;
+		font-size: 10pt;
+		font-weight: bold;
+	}
+	.nutrient-chart#calories {
+		height: 200px;
+	}
+	.nutrient-label#calories {
+		top: 150px;
+		width: 100%;
+		font-size: 15pt;
+	}
+</style>
+<div class="row" style="text-align:center;">
+	<h5>Nutritional Intake for SUNDAY 26th July <small><i class="fa fa-question-circle fa-fw"></i></small></h5> 
+</div>
+<div class="row">
+	<div class="col-xs-12 nutrient-intake"> 
+		<div class="row nutrient-chart" id="calories"></div>
+		<div class="row nutrient-label" id="calories">Calories</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-4 nutrient-intake"> 
+		<div class="row nutrient-chart" id="fat_total"></div>
+		<div class="row nutrient-label" >Total Fat</div>
+	</div>
+	<div class="col-xs-4 nutrient-intake"> 
+		<div class="row nutrient-chart" id="fat_saturated"></div>
+		<div class="row nutrient-label">Saturated Fat</div>
+	</div>
+	<div class="col-xs-4 nutrient-intake"> 
+		<div class="row nutrient-chart" id="sugar_total"></div>
+		<div class="row nutrient-label">Sugar</div>
+	</div>
+	<div class="col-xs-4 nutrient-intake"> 
+		<div class="row nutrient-chart" id="sodium"></div>
+		<div class="row nutrient-label">Sodium</div>
+	</div>
+	<div class="col-xs-4 nutrient-intake"> 
+		<div class="row nutrient-chart" id="dietary_fibre"></div>
+		<div class="row nutrient-label">Dietary Fibre</div>
+	</div>
+	<div class="col-xs-4 nutrient-intake"> 
+		<div class="row nutrient-chart" id="protein"></div>
+		<div class="row nutrient-label">Protein</div>
+	</div>
+	<div class="col-xs-4 nutrient-intake"> 
+		<div class="row nutrient-chart" id="carbohydrates"></div>
+		<div class="row nutrient-label">Carbohydrates</div>
+	</div>
+</div>

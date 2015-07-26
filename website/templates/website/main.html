@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://tympanus.net/Development/DragDropInteractions/ -->
+<html lang="en" class=" js csstransitions"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Drag and Drop Interaction Ideas | Bottom Area</title>
+		<meta name="description" content="Inspiration for drag and drop interactions for the modern UI">
+		<meta name="keywords" content="drag and drop, interaction, inspiration, web design, ui">
+		<meta name="author" content="Codrops">
+		<link rel="shortcut icon" href="http://tympanus.net/Development/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bottom-area.css' %}">
+
+		<style type="text/css"></style>
+
+
+	</head>
+	<body class="">
+		<div class="container">
+			<!-- Top Navigation -->
+			<div class="codrops-top clearfix">
+				<a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/MorphingSearch/"><span>Previous Demo</span></a>
+				<span class="right"><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=21275"><span>Back to the Codrops Article</span></a></span>
+			</div>
+			<div class="content">
+				<header class="codrops-header">
+					<h1>Drag and Drop Interaction Ideas <span>Inspiration for drag and drop interactions for the modern UI</span></h1>
+					<nav class="codrops-demos">
+						<a class="current-demo" href="http://tympanus.net/Development/DragDropInteractions/index.html">Bottom Area</a>
+						<a href="http://tympanus.net/Development/DragDropInteractions/sidebar.html">Sidebar</a>
+						<a href="http://tympanus.net/Development/DragDropInteractions/page-scale.html">Page Scale</a>
+						<a href="http://tympanus.net/Development/DragDropInteractions/modal.html">Modal</a>
+						<a href="http://tympanus.net/Development/DragDropInteractions/icons.html">Icons</a>
+						<a href="http://tympanus.net/Development/DragDropInteractions/bottom-slide.html">Bottom Slide</a>
+						<a href="http://tympanus.net/Development/DragDropInteractions/reveal.html">Reveal</a>
+					</nav>
+				</header>
+				<div id="grid" class="grid clearfix">
+					<div class="grid__item" style="position: relative; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);"><i class="fa fa-fw fa-image"></i></div>
+					<div class="grid__item" style="position: relative; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);"><i class="fa fa-fw fa-image"></i></div>
+					<div class="grid__item" style="position: relative; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);"><i class="fa fa-fw fa-image"></i></div>
+					<div class="grid__item" style="position: relative; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);"><i class="fa fa-fw fa-image"></i></div>
+					<div class="grid__item" style="position: relative;"><i class="fa fa-fw fa-image"></i></div>
+					<div class="grid__item" style="position: relative;"><i class="fa fa-fw fa-image"></i></div>
+					<div class="grid__item" style="position: relative; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);"><i class="fa fa-fw fa-image"></i></div>
+					<div class="grid__item" style="position: relative;"><i class="fa fa-fw fa-image"></i></div>
+					<div class="grid__item" style="position: relative;"><i class="fa fa-fw fa-image"></i></div>
+					<div class="grid__item" style="position: relative;"><i class="fa fa-fw fa-image"></i></div>
+					<div class="grid__item" style="position: relative;"><i class="fa fa-fw fa-image"></i></div>
+					<div class="grid__item" style="position: relative; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);"><i class="fa fa-fw fa-image"></i></div>
+				</div>
+			</div><!-- /content -->
+		</div><!-- /container -->
+		<div id="drop-area" class="drop-area">
+			<div>
+				<div class="drop-area__item"><div class="dummy"></div></div>
+				<div class="drop-area__item"><div class="dummy"></div></div>
+				<div class="drop-area__item"><div class="dummy"></div></div>
+				<div class="drop-area__item"><div class="dummy"></div></div>
+			</div>
+		</div>
+		<div class="drop-overlay"></div>
+		<script src="{% static 'js/modernizr.custom.js' %}"></script>
+		<script src="{% static 'js/draggabilly.pkgd.min.js' %}"></script>
+		<script src="{% static 'js/dragdrop.js' %}"></script>
+		<script>
+			(function() {
+				var body = document.body,
+					dropArea = document.getElementById( 'drop-area' ),
+					droppableArr = [], dropAreaTimeout;
+
+				// initialize droppables
+				[].slice.call( document.querySelectorAll( '#drop-area .drop-area__item' )).forEach( function( el ) {
+					droppableArr.push( new Droppable( el, {
+						onDrop : function( instance, draggableEl ) {
+							// show checkmark inside the droppabe element
+							classie.add( instance.el, 'drop-feedback' );
+							clearTimeout( instance.checkmarkTimeout );
+							instance.checkmarkTimeout = setTimeout( function() { 
+								classie.remove( instance.el, 'drop-feedback' );
+							}, 800 );
+							// ...
+						}
+					} ) );
+				} );
+
+				// initialize draggable(s)
+				[].slice.call(document.querySelectorAll( '#grid .grid__item' )).forEach( function( el ) {
+					new Draggable( el, droppableArr, {
+						draggabilly : { containment: document.body },
+						onStart : function() {
+							// add class 'drag-active' to body
+							classie.add( body, 'drag-active' );
+							// clear timeout: dropAreaTimeout (toggle drop area)
+							clearTimeout( dropAreaTimeout );
+							// show dropArea
+							classie.add( dropArea, 'show' );
+						},
+						onEnd : function( wasDropped ) {
+							var afterDropFn = function() {
+								// hide dropArea
+								classie.remove( dropArea, 'show' );
+								// remove class 'drag-active' from body
+								classie.remove( body, 'drag-active' );
+							};
+
+							if( !wasDropped ) {
+								afterDropFn();
+							}
+							else {
+								// after some time hide drop area and remove class 'drag-active' from body
+								clearTimeout( dropAreaTimeout );
+								dropAreaTimeout = setTimeout( afterDropFn, 400 );
+							}
+						}
+					} );
+				} );
+			})();
+		</script>
+</body></html>

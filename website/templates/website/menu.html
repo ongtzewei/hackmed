@@ -1,0 +1,26 @@
+{% load thumbnail %}
+<div class="content">	
+	<div id="grid" class="grid clearfix">
+		<div class="row">
+{% for dish in dishes %}
+			<div class="col-sm-4 col-xs-12" style="padding-bottom:20px;">
+				<div class="thumbnail" style="padding:0px;">
+				{% thumbnail dish.cover "300x200" crop="center" as im %}
+				<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-rounded grid_item">
+				{% endthumbnail %}
+				</div>
+				<div class="caption">
+					<h4>{{dish.name}}</h4>
+					<p>{{dish.description|truncatechars:126}}</p>
+					<div class="thumbnail" style="padding:0px;margin:0px;border:none;">
+					{% thumbnail dish.gda "x60" crop="center" format="PNG" as im %}
+					<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-rounded grid_item">
+					{% endthumbnail %}
+					</div>
+				</div>
+			</div>
+{% endfor %}
+		</div>
+	</div>
+</div><!-- /content -->
+
