@@ -16,18 +16,8 @@ location = lambda x: os.path.join(os.path.dirname(os.path.realpath(__file__)), x
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'pi@!73vlw89x$&$1d&&cys!rg1povaeojpci7fv_4*1ua(g74w'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ('fruitloops.com',)
-
+SECRET_KEY = '123'
 
 # Application definition
 
@@ -45,6 +35,18 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
 ]
 
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,8 +56,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-
 
 TEMPLATES = [
     {
@@ -75,20 +75,9 @@ TEMPLATES = [
     },
 ]
 
+ALLOWED_HOSTS = ('*',)
 ROOT_URLCONF = 'website.urls'
 WSGI_APPLICATION = 'hackmed.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
