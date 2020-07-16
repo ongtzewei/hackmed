@@ -15,13 +15,14 @@ class Dish(models.Model):
     class Meta:
         app_label = 'website'
         db_table = 'website_dish'
+        verbose_name_plural = 'dishes'
     
-    def __unicode__(self):
-        return u'%s' %(self.name)
+    def __str__(self):
+        return self.name
 
 
 class Nutrition(models.Model):
-    dish = models.ForeignKey(Dish, related_name='dish_nutrition')
+    dish = models.OneToOneField(Dish, related_name='dish_nutrition', on_delete=models.CASCADE)
     weight = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True,verbose_name='Weight')
     calories = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True,verbose_name='Calories (kcal)')
     protein = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True,verbose_name='Protein (grams)')
